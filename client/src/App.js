@@ -3,12 +3,14 @@ import UserForm from "./components/UserForm";
 
 import "./App.css";
 
-function App() {
-  return (
-    <div className="">
-      <UserForm />
-    </div>
-  );
+class App extends React.Component {
+  render() {
+    return (
+      <div className="">
+        <UserForm />
+      </div>
+    );
+  }
 }
 
 export default App;
