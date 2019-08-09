@@ -25,7 +25,9 @@ const UserForm = ({ status }) => {
       <Form>
         <Field type="text" name="username" placeholder="Username" />
         <Field type="text" name="password" placeholder="Password" />
-        <button type="submit">Submit</button>
+        <button data-test-id="submit" type="submit">
+          Submit
+        </button>
       </Form>
       {userData.map(data => {
         console.log(data);
