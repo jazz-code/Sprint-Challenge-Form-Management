@@ -1,10 +1,12 @@
-import React from 'react';
+import React from "react";
+import UserForm from "./components/UserForm";
 
-import './App.css';
+import "./App.css";
 
 function App() {
   return (
-    <div className="App">
+    <div className="">
+      <UserForm />
     </div>
   );
 }
