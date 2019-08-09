@@ -3,7 +3,22 @@ import { Formik, Form, Field, withFormik, validateYupSchema } from "formik";
 import * as Yup from "yup";
 import axios from "axios";
 
-const UserForm = () => {
+const UserForm = ({ status }) => {
+  const [userData, setUserData] = useState([]);
+
+  // useEffect(()=> {
+  //   if (status) {
+  //     setUserData([...userData, status])
+  //   }
+  // },[status])
+
+  useEffect(() => {
+    axios.get(`http://localhost:5000/api/restricted/data`).then(res => {
+      const data = res.data;
+      setUserData(data);
+    });
+  }, []);
+
   return (
     <div className="form">
       <h1>Form</h1>
@@ -12,6 +27,16 @@ const UserForm = () => {
         <Field type="text" name="password" placeholder="Password" />
         <button type="submit">Submit</button>
       </Form>
+      {userData.map(data => {
+        console.log(data);
+        return (
+          <div>
+            <h3>Name: {data.name}</h3>
+            <h3>Course: {data.course}</h3>
+            <h3>Technique: {data.technique}</h3>
+          </div>
+        );
+      })}
     </div>
   );
 };
