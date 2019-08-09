@@ -22,9 +22,11 @@ describe("<UserForm />", () => {
   });
   it("submit with mocked function", () => {
     const click = jest.fn();
-    const { getByText } = render(<UserForm Submit={click} />);
-    const submitButton = getByText(/^Submit$/);
+    const { getByText } = render(<UserForm click={click} />);
+    const submitButton = getByText(/^Submit$/i);
     fireEvent.click(submitButton);
-    expect(click).toBeCalled();
+    expect(click).toHaveBeenCalled();
   });
+
+  // it("Submitting a name in the input field changes")
 });

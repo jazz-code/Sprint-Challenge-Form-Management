@@ -3,7 +3,7 @@ import { Formik, Form, Field, withFormik, validateYupSchema } from "formik";
 import * as Yup from "yup";
 import axios from "axios";
 
-const UserForm = ({ status }) => {
+const UserForm = ({ errors, touched, status }) => {
   const [userData, setUserData] = useState([]);
 
   // useEffect(()=> {
@@ -24,12 +24,27 @@ const UserForm = ({ status }) => {
       <h1>Form</h1>
       <Form>
         <Field type="text" name="username" placeholder="Username" />
+        {touched.username && errors.username && (
+          <p className="error">{errors.username}</p>
+        )}
         <Field type="text" name="password" placeholder="Password" />
+        {touched.password && errors.password && (
+          <p className="error">{errors.password}</p>
+        )}
+
+        <Field component="select" className="select" name="food">
+          <option>Please Choose an Option</option>
+          {userData.map(data => {
+            return <option value={data.name}>{data.name}</option>;
+          })}
+          <option value="" />
+        </Field>
+
         <button data-test-id="submit" type="submit">
           Submit
         </button>
       </Form>
-      {userData.map(data => {
+      {/* {userData.map(data => {
         console.log(data);
         return (
           <div>
@@ -38,7 +53,7 @@ const UserForm = ({ status }) => {
             <h3>Technique: {data.technique}</h3>
           </div>
         );
-      })}
+      })} */}
     </div>
   );
 };
