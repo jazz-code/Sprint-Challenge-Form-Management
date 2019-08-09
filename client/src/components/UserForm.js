@@ -15,4 +15,13 @@ const UserForm = () => {
   );
 };
 
-export default UserForm;
+const FormikForm = withFormik({
+  mapPropsToValues({ username, password }) {
+    return {
+      username: username || "",
+      password: password || ""
+    };
+  }
+})(UserForm);
+
+export default FormikForm;
